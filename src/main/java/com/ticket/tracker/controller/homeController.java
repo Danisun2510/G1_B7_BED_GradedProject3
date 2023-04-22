@@ -2,12 +2,14 @@ package com.ticket.tracker.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ticket.tracker.entity.Tickets;
@@ -29,8 +31,6 @@ public class homeController {
 		{
 			System.out.println("asdasdasdasdasdasd");
 		}
-		System.out.println("Hello");
-		System.out.println(list);
 		m.addAttribute("tickets", list);
 		
 		return "home";
@@ -54,6 +54,36 @@ public class homeController {
 		tkt_details.setDate(LocalDate.now());
 		ticketRepo.save(tkt_details);
 		session.setAttribute("msg", "Added successfully");
-		return "redirect:/create";
+		return "redirect:/";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String edit_ticket(@PathVariable(value= "id") long id, Model m)
+	{
+	
+		Optional<Tickets> tkt = ticketRepo.findById(id);
+		Tickets ticket = tkt.get();
+		m.addAttribute("ticket", ticket);
+		
+		return "editTicket";
+	}
+	
+	@PostMapping("/update_ticket")
+	public String update_ticket(@ModelAttribute Tickets tkt_details, HttpSession session) {
+		
+		tkt_details.setDate(LocalDate.now());
+		System.out.println(tkt_details);
+		ticketRepo.save(tkt_details);
+		session.setAttribute("msg", "Added successfully");
+		return "redirect:/";
+	}
+	@GetMapping("/delete/{id}")
+	public String delete_ticket(@PathVariable(value="id") long id, HttpSession session)
+	{
+		
+		ticketRepo.deleteById(id);
+		session.setAttribute("msg", "Ticket deleted");
+		
+		return "redirect:/";
 	}
 }

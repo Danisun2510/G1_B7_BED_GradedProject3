@@ -26,7 +26,7 @@
             <li class="nav-item active">
               <a class="nav-link" href="#">New Ticket<span class="sr-only">(current)</span></a>
             </li>
-            </li>
+           
           </ul>
         </div>
       </nav>
@@ -38,8 +38,6 @@
      
       <div class="card-body">
       <h4 class="text-center text-primary">Create New Ticket</h4>
-      <div th:if="${session.msg}">
-      	<h5 th:text="${session.msg}" class="text-center text-success"></h5>
       </div>
         <form action="/make_ticket" method="POST">
             <div class="form-group">
@@ -61,7 +59,7 @@
           </div>
         </div>  
        </div>   
-      </div>
+ 
 
 </body>
 </html>

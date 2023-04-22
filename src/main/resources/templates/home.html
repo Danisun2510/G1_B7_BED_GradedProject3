@@ -35,8 +35,6 @@
             Tickets
             <h5 class="text-muted"> View your tickets here</h5>
         </h1>
-
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -54,9 +52,9 @@
                 <td>[[${t.description}]]</td>
                 <td>[[${t.content}]]</td>
                 <td>
-                    <button type="button" class="btn btn-primary" onclick="window.location.href='editTicket.html';">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-info">View</button>
+                    <a  class="btn btn-primary" th:href="@{'/edit/'+${t.id}}">Edit</a>
+                    <a th:href="@{'/delete/'+${t.id}}" class="btn btn-danger">Delete</a>
+                    <a class="btn btn-info" th:href="@{'/edit/'+${t.id}}">View</a>
                 </td>
             </tr>
             </tbody>
