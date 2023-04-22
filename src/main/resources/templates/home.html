@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Ticket Tracker Application</a>
+        <a class="navbar-brand" href="/">Ticket Tracker Application</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,7 +24,7 @@
               <a class="nav-link" href="#">Tickets <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="createTicket.html">New Ticket</a>
+              <a class="nav-link" href="create">New Ticket</a>
             </li>
             </li>
           </ul>
@@ -48,11 +48,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+            <tr th:each="t : ${tickets}" >
+                <th  scope="row">[[${t.id}]]</th>
+                <td>[[${t.title}]]</td>
+                <td>[[${t.description}]]</td>
+                <td>[[${t.content}]]</td>
                 <td>
                     <button type="button" class="btn btn-primary" onclick="window.location.href='editTicket.html';">Edit</button>
                     <button type="button" class="btn btn-danger">Delete</button>
