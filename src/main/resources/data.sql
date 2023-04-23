@@ -1,0 +1,3 @@
+INSERT INTO TICKET_DTLS(ID, CONTENT, DATE, DESCRIPTION, TITLE) VALUES(1, 'Please find details about me here', '2022-04-20', 'This is a ticket', 'Ticket')
+INSERT INTO TICKET_DTLS(ID, CONTENT, DATE, DESCRIPTION, TITLE) VALUES(2, 'Please find details about me here', '2022-04-20', 'This is a cricket', 'Cricket')
+INSERT INTO TICKET_DTLS(ID, CONTENT, DATE, DESCRIPTION, TITLE) VALUES(3, 'Please find details about me here', '2022-04-20', 'Another Item', 'Items 3')

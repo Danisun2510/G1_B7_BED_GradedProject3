@@ -35,6 +35,14 @@
             Tickets
             <h5 class="text-muted"> View your tickets here</h5>
         </h1>
+         <form action="/search_ticket" method="post">
+         <div class="input-group mb-3">
+           	 <input type="text" class="form-control" placeholder="Search ticket name" name="ticket" aria-label="Search ticket name" aria-describedby="basic-addon2">
+			  <div class="input-group-append">
+			    <button class="btn btn-outline-secondary" type="submit">Search</button>
+ 			 </div>
+ 			 </div>
+ 		 </form>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -46,11 +54,12 @@
             </tr>
             </thead>
             <tbody>
+            
             <tr th:each="t : ${tickets}" >
                 <th  scope="row">[[${t.id}]]</th>
                 <td>[[${t.title}]]</td>
                 <td>[[${t.description}]]</td>
-                <td>[[${t.content}]]</td>
+                <td>[[${t.date}]]</td>
                 <td>
                     <a  class="btn btn-primary" th:href="@{'/edit/'+${t.id}}">Edit</a>
                     <a th:href="@{'/delete/'+${t.id}}" class="btn btn-danger">Delete</a>

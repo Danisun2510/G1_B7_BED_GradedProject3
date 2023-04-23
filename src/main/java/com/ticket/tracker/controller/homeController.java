@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ticket.tracker.entity.Tickets;
 import com.ticket.tracker.repository.TicketRepository;
@@ -27,11 +28,13 @@ public class homeController {
 	public String home(Model m)
 	{
 		List<Tickets> list = ticketRepo.findAll();
-		if(list == null)
+		
+		System.out.println(m);
+		
+		if(!m.containsAttribute("tickets"))
 		{
-			System.out.println("asdasdasdasdasdasd");
+			m.addAttribute("tickets", list);
 		}
-		m.addAttribute("tickets", list);
 		
 		return "home";
 	}
@@ -85,5 +88,20 @@ public class homeController {
 		session.setAttribute("msg", "Ticket deleted");
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/search_ticket")
+	public String search_ticket(@RequestParam("ticket") String ticket, Model m )
+	{
+		
+		Optional<Tickets> tkt = ticketRepo.getByTitle(ticket); 
+	
+		if( tkt.isPresent())
+		{
+			m.addAttribute("tickets", tkt.get());
+		}
+		
+		
+		return "home";
 	}
 }
